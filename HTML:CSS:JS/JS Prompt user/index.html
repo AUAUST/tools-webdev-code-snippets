@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Number guessing game</title>
+  </head>
+  <body>
+    <h1>Hello,</h1>
+    <script>
+      const username = prompt("What's your name ?", "John Doe");
+
+      const message = `My name is ${username} and it is ${
+        username.length
+      } character${username.length > 1 ? "s" : ""} long!`;
+
+      const el = document.body.appendChild(document.createElement("p"));
+      el.innerText = message;
+    </script>
+  </body>
+</html>
