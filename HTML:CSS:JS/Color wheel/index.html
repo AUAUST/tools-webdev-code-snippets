@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      .circle {
+        width: 90vmin;
+        height: 90vmin;
+        margin: 5vmin auto;
+        background-color: black;
+        border-radius: 100%;
+        background: conic-gradient(
+          #00ff00,
+          #ffff00,
+          #ff0000,
+          #ff00ff,
+          #0000ff,
+          #00ffff,
+          #00ff00
+        );
+        animation: rotation 5s linear infinite;
+      }
+      .circle::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background: radial-gradient(
+          closest-side,
+          white 0%,
+          transparent 50%,
+          black 100%
+        );
+        mix-blend-mode: multiply;
+      }
+      @keyframes rotation {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(1turn);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="circle"></div>
+  </body>
+</html>
