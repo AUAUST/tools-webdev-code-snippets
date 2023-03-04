@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🤑🤑🤑</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body > img {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: fixed;
+        filter: blur(10px);
+        transform: scale(2);
+      }
+      #container {
+        display: flex;
+        flex-wrap: wrap;
+
+        position: fixed;
+        height: 120vh;
+        width: 120vw;
+        margin: -5vmin;
+        overflow: hidden;
+      }
+      .rectangle {
+        position: absolute;
+        transform-origin: 50%;
+        /* box-shadow: 0 0 10px #151615c8; */
+        transition: 1s ease-in-out;
+        margin-bottom: -0.5vmin;
+      }
+      .rectangle > img {
+        height: 15vmin;
+        width: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="banknote.jpg" />
+    <main id="container">
+      <div class="rectangle">
+        <img src="banknote.jpg" />
+      </div>
+    </main>
+    <script>
+      const container = document.getElementById("container");
+      const rectangle = container.firstElementChild;
+
+      const size = {
+        get vmin() {
+          const w = this.width;
+          const h = this.height;
+          return (w > h ? h : w) / 100;
+        },
+        get width() {
+          return window.innerWidth;
+        },
+        get height() {
+          return window.innerHeight;
+        },
+      };
+      function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      function clamp(min, prefered, max) {
+        if (min > prefered) return min;
+        if (max < prefered) return max;
+        return prefered;
+      }
+      function randomlyStyled(node) {
+        const s = node.style;
+
+        let offsetLeft = grid.column * unit;
+        if (offsetLeft > size.width) {
+          if (grid.row * unit > size.height) {
+            stillOnScreen = false;
+          }
+          offsetLeft = unit;
+          grid.column = 0;
+          grid.row++;
+        } else {
+          grid.column++;
+        }
+
+        let offsetTop = grid.row * unit;
+
+        s.left = `${offsetLeft}px`;
+        s.top = `${offsetTop}px`;
+        s.transform = `
+          rotate(${random(0, 359)}deg)
+          translate(${random(1, 10)}vmin, ${random(1, 10)}vmin)
+          `;
+        s.zIndex = `${random(0, 200)}`;
+
+        return node;
+      }
+      function reshuffle() {
+        grid.row = 0;
+        grid.column = 0;
+        Array.from(container.children).forEach((node) => {
+          randomlyStyled(node);
+        });
+      }
+      const grid = {
+        row: 0,
+        column: 0,
+      };
+      const unit = clamp(40, size.vmin * 15, 200);
+      var stillOnScreen = true;
+      while (stillOnScreen) {
+        const newRect = rectangle.cloneNode(true);
+        container.appendChild(randomlyStyled(newRect));
+      }
+      window.onclick = reshuffle;
+      setInterval(reshuffle, 1000);
+    </script>
+  </body>
+</html>
