@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < imgData.data.length; i += 4) {
+          const x = (i / 4) % canvas.width;
+          const y = Math.floor(i / 4 / canvas.width);
+          const distance = Math.sqrt(
+            Math.pow(x - canvas.width / 2, 2) +
+              Math.pow(y - canvas.height / 2, 2)
+          );
+          if (distance > canvas.width / 2) {
+            imgData.data[i + 3] = 0;
+          } else {
+            imgData.data[i + 3] = 255;
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+      });
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"> </canvas>
+  </body>
+</html>
