@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Apply JavaScript example</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <button>Button</button>
+    <button>Some</button>
+    <button>A button</button>
+    <button>Another button</button>
+    <button>This is a button</button>
+    <button>Yet another button</button>
+    <button>So much button</button>
+    <button>A clickable button</button>
+    <script>
+      function createParagraph() {
+        let para = document.createElement("p");
+        para.textContent = "You clicked the button!";
+        document.body.appendChild(para);
+      }
+
+      const buttons = document.querySelectorAll("button");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", createParagraph);
+      });
+    </script>
+  </body>
+</html>
