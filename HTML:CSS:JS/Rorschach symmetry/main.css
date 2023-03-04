@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+}
+
+:root {
+  font-family: monospace;
+  font-size: 10px;
+  font-weight: bolder;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+main > div {
+  flex-basis: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  font-size: 7rem;
+}
+main > div.left {
+  padding-right: 5rem;
+}
+main > div.right {
+  padding-left: 5rem;
+  text-align: right;
+}
