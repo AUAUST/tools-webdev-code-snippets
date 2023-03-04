@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌟</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      main {
+        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        background-color: #000;
+        color: #fff;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        min-height: 100dvh;
+        position: relative;
+
+        background-image: url(./sky.jpg);
+        background-size: cover;
+        background-position: center;
+
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 12vw;
+        font-weight: 700;
+
+        position: relative;
+      }
+
+      text-real {
+        color: #fff0;
+        text-shadow: 0px 0px 1vw #fff5;
+        mix-blend-mode: plus-lighter;
+      }
+      text-clone {
+        position: absolute;
+        color: transparent;
+        text-shadow: 0 0 0.3vw #fff6;
+        background-color: #fff5;
+        background-clip: text;
+      }
+      stars-container {
+        position: absolute;
+        display: block;
+        height: 100vw;
+        width: 100vw;
+        /* background-color: red;
+        mix-blend-mode: color; */
+      }
+      shiny-star {
+        position: absolute;
+        display: block;
+        width: calc(var(--size) * 1vw);
+        height: calc(var(--size) * 1vw);
+        top: var(--top);
+        left: var(--left);
+        transform: translate(-50%, -50%) rotate(var(--rotation));
+        mix-blend-mode: plus-lighter;
+        opacity: var(--opacity);
+
+        background: radial-gradient(
+            circle at 50% 50%,
+            #ffff 0%,
+            #fff8 5%,
+            #fff4 10%,
+            transparent 30%,
+            #0008 50%,
+            black 70%
+          ),
+          conic-gradient(
+            black 0%,
+            black 17.5%,
+            white 25%,
+            black 25%,
+            black 42.5%,
+            white 50%,
+            black 50%,
+            black 67.5%,
+            white 75%,
+            black 75%,
+            black 92.5%,
+            white 100%
+          );
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>
+        <text-clone> Nombre d'Or </text-clone>
+        <text-real> Nombre d'Or </text-real>
+      </h1>
+      <stars-container id="stars-container"> </stars-container>
+      <script>
+        const container = document.getElementById("stars-container");
+        const starTemplate = document.createElement("shiny-star");
+        const stars = [
+          // (N)ombre d'Or
+          {
+            top: 45.8,
+            left: 21.4,
+            size: 29,
+            rotation: -20.2,
+            opacity: 0.2,
+          },
+          {
+            top: 45.8,
+            left: 21.4,
+            size: 15,
+            rotation: 40,
+            opacity: 0.2,
+          },
+          // Nom(b)re d'Or
+          {
+            top: 45.8,
+            left: 43,
+            size: 10,
+            rotation: -65.5,
+          },
+          {
+            top: 45.8,
+            left: 43,
+            size: 40,
+            rotation: 75.5,
+            opacity: 0.2,
+          },
+          // Nombre (d)'Or
+          {
+            top: 45.9,
+            left: 68.9,
+            size: 200,
+            rotation: 75.5,
+            opacity: 0.2,
+          },
+          // Nombre d(')Or
+          {
+            top: 45.8,
+            left: 71.4,
+            size: 10,
+            rotation: -65.5,
+          },
+          // Nombre d'(O)r
+          {
+            top: 48.2,
+            left: 86.2,
+            size: 44,
+            rotation: -35,
+            opacity: 0.4,
+          },
+          {
+            top: 48.2,
+            left: 86.2,
+            size: 20,
+            rotation: 35,
+            opacity: 0.4,
+          },
+        ];
+        stars.forEach((star) => {
+          const newStar = starTemplate.cloneNode();
+          newStar.style.setProperty("--top", star.top + "%");
+          newStar.style.setProperty("--left", star.left + "%");
+          newStar.style.setProperty("--size", star.size);
+          newStar.style.setProperty("--rotation", (star.rotation ?? 0) + "deg");
+          newStar.style.setProperty("--opacity", star.opacity ?? "0.7");
+          container.appendChild(newStar);
+        });
+      </script>
+    </main>
+  </body>
+</html>
