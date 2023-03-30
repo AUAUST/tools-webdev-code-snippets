@@ -34,6 +34,23 @@
           canvas.width,
           canvas.height
         );
+        toBitmap(ctx);
+      }
+      function toBitmap(ctx) {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          // get average value
+          const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+          let colorValue = 0;
+          if (avg > 127) {
+            colorValue = 255;
+          }
+          data[i] = colorValue;
+          data[i + 1] = colorValue;
+          data[i + 2] = colorValue;
+        }
+        ctx.putImageData(imageData, 0, 0);
       }
     </script>
   </body>
