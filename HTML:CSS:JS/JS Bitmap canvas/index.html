@@ -51,6 +51,38 @@
           data[i + 2] = colorValue;
         }
         ctx.putImageData(imageData, 0, 0);
+
+        pushRight(ctx);
+      }
+      function pushRight(ctx) {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        // count the number of black and white pixels on each row
+        // then group all white pixels to the right
+        for (let y = 0; y < canvas.height; y++) {
+          let blackCount = 0;
+          for (let x = 0; x < canvas.width; x++) {
+            const i = (y * canvas.width + x) * 4;
+            if (data[i] === 0) {
+              blackCount++;
+            }
+          }
+          for (let x = 0; x < canvas.width; x++) {
+            const i = y * canvas.width + x;
+            const j = (y * canvas.width + x + blackCount) * 4;
+            if (x < blackCount) {
+              data[j] = 255;
+              data[j + 1] = 255;
+              data[j + 2] = 255;
+            } else {
+              data[j] = data[i * 4];
+              data[j + 1] = data[i * 4 + 1];
+              data[j + 2] = data[i * 4 + 2];
+            }
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
       }
     </script>
   </body>
