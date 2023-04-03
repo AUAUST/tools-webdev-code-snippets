@@ -10,16 +10,23 @@
         margin: 0;
         padding: 0;
       }
+      hr {
+        margin: 0;
+        border: 20px solid #e7e7e7;
+      }
 
       grid-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 10px;
-        padding: 10px;
+        --gap: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        padding: var(--gap);
+        justify-content: center;
       }
       grid-item {
         display: block;
+        width: calc(100% / 3 - var(--gap) * 2);
         height: calc(50px * var(--m));
+        margin: var(--gap);
         background-color: black;
         border-radius: 10px;
       }
@@ -31,6 +38,14 @@
     </grid-container>
     <hr />
     <grid-container>
+      <grid-item style="--m: 9"></grid-item>
+      <grid-item style="--m: 4"></grid-item>
+      <grid-item style="--m: 6"></grid-item>
+      <grid-item style="--m: 7"></grid-item>
+      <grid-item style="--m: 5"></grid-item>
+    </grid-container>
+    <hr />
+    <grid-container>
       <grid-item style="--m: 6"></grid-item>
       <grid-item style="--m: 9"></grid-item>
     </grid-container>
@@ -46,14 +61,6 @@
       <grid-item style="--m: 5"></grid-item>
       <grid-item style="--m: 8"></grid-item>
       <grid-item style="--m: 6"></grid-item>
-    </grid-container>
-    <hr />
-    <grid-container>
-      <grid-item style="--m: 9"></grid-item>
-      <grid-item style="--m: 4"></grid-item>
-      <grid-item style="--m: 6"></grid-item>
-      <grid-item style="--m: 7"></grid-item>
-      <grid-item style="--m: 5"></grid-item>
     </grid-container>
   </body>
 </html>
