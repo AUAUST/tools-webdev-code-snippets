@@ -13,6 +13,7 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        background-color: #141414;
       }
       .container {
         display: flex;
@@ -22,9 +23,18 @@
         height: 100%;
       }
       .gradient {
-        width: 100px;
-        height: 10px;
-        background-color: aquamarine;
+        width: 400px;
+        height: 8px;
+        background-image: linear-gradient(
+          to right,
+          transparent 0%,
+          aquamarine 100%
+        );
+        border-top-right-radius: 10% 100%;
+        border-bottom-right-radius: 10% 100%;
+        border-top-left-radius: 100%;
+        border-bottom-left-radius: 100%;
+        filter: blur(5px);
       }
     </style>
   </head>
