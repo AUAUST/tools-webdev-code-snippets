@@ -13,7 +13,8 @@
         margin: 0;
         padding: 0;
         height: 100%;
-        background-color: #141414;
+        --background-color: #141414;
+        background-color: var(--background-color);
       }
       .container {
         display: flex;
@@ -48,14 +49,14 @@
           #7fffd455 60%,
           #7fffd4 100%
         );
+        background-color: var(--background-color);
       }
       .gradient-overglow {
-        inset: -2px;
-        z-index: -1;
+        inset: 3px -12px;
         background-image: conic-gradient(
           from 0deg at 50% 50%,
-          red 0%,
-          red 10%,
+          white 0%,
+          white 10%,
           transparent 10%,
           transparent 100%
         );
@@ -70,8 +71,8 @@
     <div class="container">
       <div class="range-wrapper">
         <div class="gradient">
-          <div class="gradient-main"></div>
           <div class="gradient-overglow"></div>
+          <div class="gradient-main"></div>
         </div>
         <input type="range" min="0" max="4" value="0" step="1" />
       </div>
