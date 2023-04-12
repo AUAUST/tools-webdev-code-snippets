@@ -23,38 +23,56 @@
         height: 100%;
       }
       .range-wrapper {
+        isolation: isolate;
         position: relative;
         width: 400px;
       }
-      .gradient {
+      .gradient-main,
+      .gradient-overglow {
         position: absolute;
-        inset-inline: -10px;
-        padding-block: 5px;
+        border-top-right-radius: 10% 100%;
+        border-bottom-right-radius: 10% 100%;
+        border-top-left-radius: 100%;
+        border-bottom-left-radius: 100%;
+        pointer-events: none;
+      }
+      .gradient {
+        isolation: isolate;
+        filter: blur(5px);
+      }
+      .gradient-main {
+        inset: 5px -10px;
         background-image: linear-gradient(
           to right,
           transparent 0%,
           #7fffd455 60%,
           #7fffd4 100%
         );
-        border-top-right-radius: 10% 100%;
-        border-bottom-right-radius: 10% 100%;
-        border-top-left-radius: 100%;
-        border-bottom-left-radius: 100%;
-        filter: blur(5px);
-        pointer-events: none;
+      }
+      .gradient-overglow {
+        inset: -2px;
+        z-index: -1;
+        background-image: conic-gradient(
+          from 0deg at 50% 50%,
+          red 0%,
+          red 10%,
+          transparent 10%,
+          transparent 100%
+        );
       }
       input[type="range"] {
-        position: absolute;
+        all: unset;
         width: 100%;
-
-        background: transparent;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="range-wrapper">
-        <div class="gradient"></div>
+        <div class="gradient">
+          <div class="gradient-main"></div>
+          <div class="gradient-overglow"></div>
+        </div>
         <input type="range" min="0" max="4" value="0" step="1" />
       </div>
     </div>
