@@ -4,4 +4,18 @@
   padding: 0;
 }
 
+body, body > div {
+  overflow: hidden;
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  height: 100%;
+}
+
 /*# sourceMappingURL=style.css.map */

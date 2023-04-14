@@ -3,3 +3,22 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  &,
+  & > div {
+    overflow: hidden;
+  }
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  height: 100%;
+}
+menu {
+}
