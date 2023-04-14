@@ -38,6 +38,7 @@
         pointer-events: none;
       }
       .gradient {
+        z-index: -1;
         isolation: isolate;
         filter: blur(5px);
       }
@@ -70,11 +71,11 @@
   <body>
     <div class="container">
       <div class="range-wrapper">
+        <input type="range" min="0" max="4" value="0" step="1" />
         <div class="gradient">
           <div class="gradient-overglow"></div>
           <div class="gradient-main"></div>
         </div>
-        <input type="range" min="0" max="4" value="0" step="1" />
       </div>
     </div>
   </body>
