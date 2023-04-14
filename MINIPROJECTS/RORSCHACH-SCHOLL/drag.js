@@ -8,7 +8,14 @@
     lastX: 0,
     lastY: 0,
     moving: false,
+    containerWidth: view.clientWidth,
+    containerHeight: view.clientHeight,
   };
+
+  window.addEventListener("resize", function () {
+    state.containerWidth = view.clientWidth;
+    state.containerHeight = view.clientHeight;
+  });
 
   view.addEventListener("mousedown", function (event) {
     console.log("mousedown");
@@ -31,12 +38,18 @@
       state.lastX = event.clientX;
       state.lastY = event.clientY;
 
-      // set --left and --top
+      const xPercent = (x / state.containerWidth) * 100;
+      const yPercent = (y / state.containerHeight) * 100;
+
       const left = parseInt(getComputedStyle(main).getPropertyValue("--left"));
       const top = parseInt(getComputedStyle(main).getPropertyValue("--top"));
 
-      main.style.setProperty("--left", `${left + x}%`);
-      main.style.setProperty("--top", `${top + y}%`);
+      main.style.setProperty("--left", `${clamp(0, left + xPercent, 100)}%`);
+      main.style.setProperty("--top", `${(clamp / 0, top + yPercent, 100)}%`);
     }
   });
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
 })();
