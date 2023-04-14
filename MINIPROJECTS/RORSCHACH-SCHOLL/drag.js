@@ -2,8 +2,6 @@
   const view = document.getElementById("view");
   const main = document.getElementById("main");
 
-  console.log("view", view);
-
   const state = {
     lastX: 0,
     lastY: 0,
@@ -36,19 +34,16 @@
   });
 
   view.addEventListener("mousedown", function (event) {
-    console.log("mousedown");
     state.moving = true;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
   });
 
   view.addEventListener("mouseup", function () {
-    console.log("mouseup");
     state.moving = false;
   });
 
   view.addEventListener("mousemove", function (event) {
-    console.log("mousemove");
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
       const deltaY = event.clientY - state.lastY;
