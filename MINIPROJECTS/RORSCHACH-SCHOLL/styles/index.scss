@@ -21,7 +21,13 @@ body > div {
 
 main {
   height: 100%;
-  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .mirror {
+    transform: rotateY(180deg);
+  }
 }
 menu {
   display: flex;
