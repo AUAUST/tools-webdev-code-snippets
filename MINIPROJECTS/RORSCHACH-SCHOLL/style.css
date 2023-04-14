@@ -7,7 +7,8 @@
 body {
   --color: #000000;
 }
-body, body > div {
+body,
+body > div {
   overflow: hidden;
 }
 
@@ -23,6 +24,7 @@ main {
   grid-template-columns: 1fr 1fr;
   --left: 50%;
   --top: 50%;
+  --size: 100;
 }
 main .view {
   cursor: move;
@@ -31,11 +33,13 @@ main .mirror {
   transform: rotateY(180deg);
   cursor: not-allowed;
 }
-main .mirror, main .view {
+main .mirror,
+main .view {
   position: relative;
   overflow: hidden;
 }
-main .mirror svg, main .view svg {
+main .mirror svg,
+main .view svg {
   position: absolute;
   left: var(--left);
   top: var(--top);
@@ -77,27 +81,27 @@ menu li.current svg:hover {
   background-color: var(--color);
 }
 
-[data-color=black] {
+[data-color="black"] {
   --color: #000000;
 }
 
-[data-color=gray] {
+[data-color="gray"] {
   --color: #6f6f6e;
 }
 
-[data-color=red] {
+[data-color="red"] {
   --color: #cc5563;
 }
 
-[data-color=blue] {
+[data-color="blue"] {
   --color: #636aac;
 }
 
-[data-color=green] {
+[data-color="green"] {
   --color: #3992a6;
 }
 
-[data-color=yellow] {
+[data-color="yellow"] {
   --color: #ffee54;
 }
 
