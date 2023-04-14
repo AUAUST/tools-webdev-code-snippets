@@ -69,6 +69,10 @@
     }
   });
 
+  document.body.addEventListener("mouseleave", function () {
+    state.moving = false;
+  });
+
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
   }
