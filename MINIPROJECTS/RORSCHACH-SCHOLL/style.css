@@ -45,9 +45,6 @@ menu li {
   flex-direction: column;
   overflow: hidden;
 }
-menu li.current svg {
-  fill: var(--color);
-}
 menu li .color {
   height: 10px;
   background-color: var(--color);
@@ -65,6 +62,12 @@ menu li .icon svg {
 menu li .icon svg:hover {
   fill: white;
   background-color: black;
+}
+menu li.current svg {
+  fill: var(--color);
+}
+menu li.current svg:hover {
+  background-color: var(--color);
 }
 
 [data-color=black] {

@@ -50,12 +50,6 @@ menu {
     flex-direction: column;
     overflow: hidden;
 
-    &.current {
-      svg {
-        fill: var(--color);
-      }
-    }
-
     .color {
       height: 10px;
       background-color: var(--color);
@@ -73,6 +67,16 @@ menu {
         &:hover {
           fill: white;
           background-color: black;
+        }
+      }
+    }
+
+    &.current {
+      svg {
+        fill: var(--color);
+
+        &:hover {
+          background-color: var(--color);
         }
       }
     }
