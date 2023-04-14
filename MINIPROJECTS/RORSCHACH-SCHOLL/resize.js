@@ -26,6 +26,9 @@
 
   element.addEventListener("mousedown", function (event) {
     state.moving = true;
+
+    state.width = (event.clientX / state.containerWidth) * 100;
+
     state.lastX = event.clientX;
   });
 
