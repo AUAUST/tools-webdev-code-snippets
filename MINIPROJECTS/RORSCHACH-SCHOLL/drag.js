@@ -40,7 +40,7 @@
     state.lastY = event.clientY;
   });
 
-  view.addEventListener("mouseup", function () {
+  body.addEventListener("mouseup", function () {
     state.moving = false;
   });
 
