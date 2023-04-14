@@ -16,7 +16,7 @@
     },
     set width(value) {
       this._width_ = value;
-      body.style.setProperty("--size", `${value}%`);
+      body.style.setProperty("--size", `${value}`);
     },
   };
 
