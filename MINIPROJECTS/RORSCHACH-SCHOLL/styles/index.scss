@@ -28,9 +28,14 @@ main {
   --left: 50%;
   --top: 50%;
 
+  .view {
+    cursor: move;
+  }
   .mirror {
     transform: rotateY(180deg);
+    cursor: not-allowed;
   }
+
   & .mirror,
   & .view {
     position: relative;
