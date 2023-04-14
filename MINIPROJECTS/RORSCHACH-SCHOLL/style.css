@@ -21,9 +21,22 @@ main {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  --left: 50%;
+  --top: 50%;
 }
 main .mirror {
   transform: rotateY(180deg);
+}
+main .mirror, main .view {
+  position: relative;
+  overflow: hidden;
+}
+main .mirror svg, main .view svg {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  transform: translate(-50%, -50%);
+  fill: var(--color);
 }
 
 menu {

@@ -25,8 +25,24 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
+  --left: 50%;
+  --top: 50%;
+
   .mirror {
     transform: rotateY(180deg);
+  }
+  & .mirror,
+  & .view {
+    position: relative;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      left: var(--left);
+      top: var(--top);
+      transform: translate(-50%, -50%);
+      fill: var(--color);
+    }
   }
 }
 menu {
