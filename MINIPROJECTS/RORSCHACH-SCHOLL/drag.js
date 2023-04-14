@@ -10,6 +10,24 @@
     moving: false,
     containerWidth: view.clientWidth,
     containerHeight: view.clientHeight,
+
+    _left_: 50,
+    _top_: 50,
+
+    get left() {
+      return this._left_;
+    },
+    get top() {
+      return this._top_;
+    },
+    set left(value) {
+      this._left_ = value;
+      main.style.setProperty("--left", `${value}%`);
+    },
+    set top(value) {
+      this._top_ = value;
+      main.style.setProperty("--top", `${value}%`);
+    },
   };
 
   window.addEventListener("resize", function () {
@@ -32,20 +50,22 @@
   view.addEventListener("mousemove", function (event) {
     console.log("mousemove");
     if (state.moving) {
-      const x = event.clientX - state.lastX;
-      const y = event.clientY - state.lastY;
+      const deltaX = event.clientX - state.lastX;
+      const deltaY = event.clientY - state.lastY;
+
+      state.left = clamp(
+        state.left + (deltaX / state.containerWidth) * 100,
+        0,
+        100
+      );
+      state.top = clamp(
+        state.top + (deltaY / state.containerHeight) * 100,
+        0,
+        100
+      );
 
       state.lastX = event.clientX;
       state.lastY = event.clientY;
-
-      const xPercent = (x / state.containerWidth) * 100;
-      const yPercent = (y / state.containerHeight) * 100;
-
-      const left = parseInt(getComputedStyle(main).getPropertyValue("--left"));
-      const top = parseInt(getComputedStyle(main).getPropertyValue("--top"));
-
-      main.style.setProperty("--left", `${clamp(0, left + xPercent, 100)}%`);
-      main.style.setProperty("--top", `${(clamp / 0, top + yPercent, 100)}%`);
     }
   });
 
