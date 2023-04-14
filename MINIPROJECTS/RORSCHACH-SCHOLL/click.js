@@ -3,7 +3,7 @@
 
   const buttons = document.querySelectorAll("[data-color]");
 
-  const uses = [
+  const svgUses = [
     document.getElementById("shape-main").querySelector("use"),
     document.getElementById("shape-mirror").querySelector("use"),
   ];
@@ -19,8 +19,8 @@
 
       body.dataset.color = this.dataset.color;
 
-      for (const use of uses) {
-        use.setAttribute("xlink:href", xlink);
+      for (const svgUse of svgUses) {
+        svgUse.setAttribute("xlink:href", xlink);
       }
     });
   }
