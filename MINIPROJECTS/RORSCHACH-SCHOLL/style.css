@@ -4,6 +4,9 @@
   padding: 0;
 }
 
+body {
+  --color: #000000;
+}
 body, body > div {
   overflow: hidden;
 }
@@ -29,7 +32,8 @@ main .view .circle {
   width: 50vh;
   aspect-ratio: 1;
   border-radius: 100%;
-  background-color: currentColor;
+  background-color: var(--color);
+  transition: background-color 0.5s ease-in-out;
 }
 
 menu {

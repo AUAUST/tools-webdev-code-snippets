@@ -5,6 +5,8 @@
 }
 
 body {
+  --color: #000000;
+
   &,
   & > div {
     overflow: hidden;
@@ -33,7 +35,9 @@ main {
       width: 50vh;
       aspect-ratio: 1;
       border-radius: 100%;
-      background-color: currentColor;
+      background-color: var(--color);
+
+      transition: background-color 0.5s ease-in-out;
     }
   }
 }
