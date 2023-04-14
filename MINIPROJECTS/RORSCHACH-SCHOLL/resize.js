@@ -29,13 +29,14 @@
     state.lastX = event.clientX;
   });
 
-  element.addEventListener("mouseup", function () {
+  body.addEventListener("mouseup", function () {
     state.moving = false;
   });
 
   element.addEventListener("mousemove", function (event) {
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
+      state.lastX = event.clientX;
 
       state.width = clamp(
         state.width + (deltaX / state.containerWidth) * 100,
