@@ -1,6 +1,7 @@
 (function () {
   const view = document.getElementById("view");
   const main = document.getElementById("main");
+  const body = document.body;
 
   const state = {
     lastX: 0,
@@ -43,7 +44,7 @@
     state.moving = false;
   });
 
-  view.addEventListener("mousemove", function (event) {
+  body.addEventListener("mousemove", function (event) {
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
       const deltaY = event.clientY - state.lastY;
