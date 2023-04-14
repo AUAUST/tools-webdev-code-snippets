@@ -6,6 +6,7 @@
 
 body {
   --color: #000000;
+  --size: 50;
 
   &,
   & > div {
@@ -91,7 +92,16 @@ menu {
     }
   }
 }
-
+#resize {
+  height: 10px;
+  background-image: linear-gradient(
+    to right,
+    black,
+    black calc(var(--size) * 1%),
+    white calc(var(--size) * 1%),
+    white 100%
+  );
+}
 // black, gray, red, blue, green, yellow
 [data-color="black"] {
   --color: #000000;
