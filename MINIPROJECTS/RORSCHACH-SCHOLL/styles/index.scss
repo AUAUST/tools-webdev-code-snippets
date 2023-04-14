@@ -46,7 +46,7 @@ main {
       position: absolute;
       left: var(--left);
       top: var(--top);
-      transform: translate(-50%, -50%) scale(calc(var(--size) / 100));
+      transform: translate(-50%, -50%) scale(calc(var(--size) / 10));
       fill: var(--color);
     }
   }

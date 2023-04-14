@@ -36,7 +36,7 @@
     state.moving = false;
   });
 
-  element.addEventListener("mousemove", function (event) {
+  body.addEventListener("mousemove", function (event) {
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
       state.lastX = event.clientX;
