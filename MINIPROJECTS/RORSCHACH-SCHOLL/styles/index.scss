@@ -21,4 +21,27 @@ main {
   height: 100%;
 }
 menu {
+  li {
+    background-color: var(--color);
+  }
+}
+
+// black, gray, red, blue, green, yellow
+[data-color="black"] {
+  --color: #000000;
+}
+[data-color="gray"] {
+  --color: #6f6f6e;
+}
+[data-color="red"] {
+  --color: #cc5563;
+}
+[data-color="blue"] {
+  --color: #636aac;
+}
+[data-color="green"] {
+  --color: #3992a6;
+}
+[data-color="yellow"] {
+  --color: #ffee54;
 }
