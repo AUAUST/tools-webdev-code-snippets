@@ -85,11 +85,7 @@ menu {
 
     &.current {
       svg {
-        fill: var(--color);
-
-        &:hover {
-          background-color: var(--color);
-        }
+        background-color: #e9e9e9;
       }
     }
   }
@@ -104,8 +100,8 @@ menu {
     to right,
     black,
     black calc(var(--size) * 1%),
-    white calc(var(--size) * 1%),
-    white 100%
+    #e9e9e9 calc(var(--size) * 1%),
+    #e9e9e9 100%
   );
 }
 // black, gray, red, blue, green, yellow
