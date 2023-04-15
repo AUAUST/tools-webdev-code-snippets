@@ -24,17 +24,20 @@
     state.containerWidth = element.clientWidth;
   });
 
-  const dragStart = function (event) {
-    state.moving = true;
-    state.width = (event.clientX / state.containerWidth) * 100;
-    state.lastX = event.clientX;
-  };
   const dragEnd = function () {
     state.moving = false;
   };
 
-  element.addEventListener("mousedown", dragStart);
-  element.addEventListener("touchstart", dragStart);
+  element.addEventListener("mousedown", function (event) {
+    state.moving = true;
+    state.width = (event.clientX / state.containerWidth) * 100;
+    state.lastX = event.clientX;
+  });
+  element.addEventListener("touchstart", function (event) {
+    state.moving = true;
+    state.width = (event.touches[0].clientX / state.containerWidth) * 100;
+    state.lastX = event.touches[0].clientX;
+  });
 
   body.addEventListener("mouseup", dragEnd);
   body.addEventListener("touchend", dragEnd);
