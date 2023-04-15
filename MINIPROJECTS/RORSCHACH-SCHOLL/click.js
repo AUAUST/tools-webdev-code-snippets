@@ -24,6 +24,11 @@
 
   const buttons = document.querySelectorAll("[data-icon]");
 
+  const views = [
+    document.getElementById("shape-main").querySelector("svg use"),
+    document.getElementById("shape-mirror").querySelector("svg use"),
+  ];
+
   for (const button of buttons) {
     button.addEventListener("click", function () {
       for (const button of buttons) {
@@ -31,7 +36,9 @@
       }
       this.classList.add("current");
 
-      body.dataset.icon = this.dataset.icon;
+      for (const view of views) {
+        view.setAttribute("xlink:href", `#${this.dataset.icon}`);
+      }
     });
   }
 })();
