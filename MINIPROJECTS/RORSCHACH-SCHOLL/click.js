@@ -20,8 +20,6 @@
 (function () {
   // For shapes (icons) buttons
 
-  const body = document.body;
-
   const buttons = document.querySelectorAll("[data-icon]");
 
   const views = [
