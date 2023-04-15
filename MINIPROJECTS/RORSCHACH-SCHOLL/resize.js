@@ -9,7 +9,7 @@
 
     containerWidth: element.clientWidth,
 
-    _width_: 50,
+    _width_: 20,
 
     get width() {
       return this._width_;
