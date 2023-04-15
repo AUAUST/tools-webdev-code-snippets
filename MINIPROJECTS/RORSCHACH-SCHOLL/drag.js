@@ -34,39 +34,57 @@
     state.containerHeight = view.clientHeight;
   });
 
-  view.addEventListener("mousedown", function (event) {
+  const dragStart = function (event) {
     state.moving = true;
+    state.left = (event.clientX / state.containerWidth) * 100;
+    state.top = (event.clientY / state.containerHeight) * 100;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
-  });
-
-  body.addEventListener("mouseup", function () {
+  };
+  const dragEnd = function () {
     state.moving = false;
-  });
+  };
+
+  view.addEventListener("mousedown", dragStart);
+  view.addEventListener("touchstart", dragStart);
+
+  body.addEventListener("mouseup", dragEnd);
+  body.addEventListener("mouseleave", dragEnd);
+  body.addEventListener("touchend", dragEnd);
+
+  const setPosition = function (left, top) {
+    state.left = clamp(state.left + left * 100, -30, 130);
+    state.top = clamp(state.top + top * 100, -30, 130);
+  };
 
   body.addEventListener("mousemove", function (event) {
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
       const deltaY = event.clientY - state.lastY;
 
-      state.left = clamp(
-        state.left + (deltaX / state.containerWidth) * 100,
-        -30,
-        130
-      );
-      state.top = clamp(
-        state.top + (deltaY / state.containerHeight) * 100,
-        -30,
-        130
-      );
+      const left = deltaX / state.containerWidth;
+      const top = deltaY / state.containerHeight;
+
+      setPosition(left, top);
 
       state.lastX = event.clientX;
       state.lastY = event.clientY;
     }
   });
 
-  document.body.addEventListener("mouseleave", function () {
-    state.moving = false;
+  body.addEventListener("touchmove", function (event) {
+    if (state.moving) {
+      const deltaX = event.touches[0].clientX - state.lastX;
+      const deltaY = event.touches[0].clientY - state.lastY;
+
+      const left = deltaX / state.containerWidth;
+      const top = deltaY / state.containerHeight;
+
+      setPosition(left, top);
+
+      state.lastX = event.touches[0].clientX;
+      state.lastY = event.touches[0].clientY;
+    }
   });
 })();
 
