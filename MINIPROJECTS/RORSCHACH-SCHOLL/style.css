@@ -47,7 +47,7 @@ main .mirror svg, main .view svg {
 menu {
   display: flex;
   position: relative;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 menu li {
   width: 100%;
@@ -56,11 +56,11 @@ menu li {
   overflow: hidden;
 }
 menu li .color {
-  height: 10px;
+  height: 15px;
   background-color: var(--color);
 }
 menu li .icon {
-  height: 90px;
+  height: 95px;
 }
 menu li .icon svg {
   height: 100%;
@@ -84,7 +84,7 @@ menu li.current svg:hover {
   position: absolute;
   width: 100%;
   top: 0;
-  height: 10px;
+  height: 15px;
   cursor: ew-resize;
   background-image: linear-gradient(to right, black, black calc(var(--size) * 1%), white calc(var(--size) * 1%), white 100%);
 }

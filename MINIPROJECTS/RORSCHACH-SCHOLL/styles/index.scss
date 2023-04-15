@@ -54,7 +54,7 @@ main {
 menu {
   display: flex;
   position: relative;
-  padding-top: 10px;
+  padding-top: 15px;
 
   li {
     width: 100%;
@@ -63,11 +63,11 @@ menu {
     overflow: hidden;
 
     .color {
-      height: 10px;
+      height: 15px;
       background-color: var(--color);
     }
     .icon {
-      height: 90px;
+      height: 95px;
 
       svg {
         height: 100%;
@@ -98,7 +98,7 @@ menu {
   position: absolute;
   width: 100%;
   top: 0;
-  height: 10px;
+  height: 15px;
   cursor: ew-resize;
   background-image: linear-gradient(
     to right,
