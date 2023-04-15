@@ -32,7 +32,14 @@
   const dragEnd = function () {
     state.moving = false;
   };
-  const dragMove = function (event) {
+
+  element.addEventListener("mousedown", dragStart);
+  element.addEventListener("touchstart", dragStart);
+
+  body.addEventListener("mouseup", dragEnd);
+  body.addEventListener("touchend", dragEnd);
+
+  body.addEventListener("mousemove", function (event) {
     if (state.moving) {
       const deltaX = event.clientX - state.lastX;
       state.lastX = event.clientX;
@@ -43,14 +50,17 @@
         100
       );
     }
-  };
+  });
+  body.addEventListener("touchmove", function (event) {
+    if (state.moving) {
+      const deltaX = event.touches[0].clientX - state.lastX;
+      state.lastX = event.touches[0].clientX;
 
-  element.addEventListener("mousedown", dragStart);
-  element.addEventListener("touchstart", dragStart);
-
-  body.addEventListener("mouseup", dragEnd);
-  body.addEventListener("touchend", dragEnd);
-
-  body.addEventListener("mousemove", dragMove);
-  body.addEventListener("touchmove", dragMove);
+      state.width = clamp(
+        state.width + (deltaX / state.containerWidth) * 100,
+        0,
+        100
+      );
+    }
+  });
 })();
