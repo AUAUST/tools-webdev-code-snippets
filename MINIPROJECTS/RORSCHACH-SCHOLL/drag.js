@@ -82,18 +82,20 @@
   });
 
   body.addEventListener("touchmove", function (event) {
-    if (state.moving) {
-      const deltaX = event.touches[0].clientX - state.lastX;
-      const deltaY = event.touches[0].clientY - state.lastY;
+    if (!state.moving) return;
 
-      const left = deltaX / state.containerWidth;
-      const top = deltaY / state.containerHeight;
+    const deltaX = event.touches[0].clientX - state.lastX;
+    const deltaY = event.touches[0].clientY - state.lastY;
 
-      setPosition(left, top);
+    console.log(event.touches[0].clientX, state.lastX);
 
-      state.lastX = event.touches[0].clientX;
-      state.lastY = event.touches[0].clientY;
-    }
+    const left = deltaX / state.containerWidth;
+    const top = deltaY / state.containerHeight;
+
+    setPosition(left, top);
+
+    state.lastX = event.touches[0].clientX;
+    state.lastY = event.touches[0].clientY;
   });
 })();
 
