@@ -51,13 +51,13 @@
 
       state.left = clamp(
         state.left + (deltaX / state.containerWidth) * 100,
-        0,
-        100
+        -30,
+        130
       );
       state.top = clamp(
         state.top + (deltaY / state.containerHeight) * 100,
-        0,
-        100
+        -30,
+        130
       );
 
       state.lastX = event.clientX;
