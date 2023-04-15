@@ -34,17 +34,20 @@
     state.containerHeight = view.clientHeight;
   });
 
-  const dragStart = function (event) {
-    state.moving = true;
-    state.lastX = event.clientX;
-    state.lastY = event.clientY;
-  };
   const dragEnd = function () {
     state.moving = false;
   };
 
-  view.addEventListener("mousedown", dragStart);
-  view.addEventListener("touchstart", dragStart);
+  view.addEventListener("mousedown", function (event) {
+    state.moving = true;
+    state.lastX = event.clientX;
+    state.lastY = event.clientY;
+  });
+  view.addEventListener("touchstart", function (event) {
+    state.moving = true;
+    state.lastX = event.touches[0].clientX;
+    state.lastY = event.touches[0].clientY;
+  });
 
   body.addEventListener("mouseup", dragEnd);
   body.addEventListener("mouseleave", dragEnd);
