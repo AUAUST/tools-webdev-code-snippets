@@ -36,12 +36,6 @@
 
   const dragStart = function (event) {
     state.moving = true;
-    state.left =
-      ((event.clientX ?? event.touches[0].clientX) / state.containerWidth) *
-      100;
-    state.top =
-      ((event.clientY ?? event.touches[0].clientY) / state.containerHeight) *
-      100;
     state.lastX = event.clientX;
     state.lastY = event.clientY;
   };
