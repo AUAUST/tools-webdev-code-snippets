@@ -20,12 +20,10 @@
       return this._top_;
     },
     set left(value) {
-      if (value === NaN) return;
       this._left_ = value;
       main.style.setProperty("--left", `${value}%`);
     },
     set top(value) {
-      if (value === NaN) return;
       this._top_ = value;
       main.style.setProperty("--top", `${value}%`);
     },
@@ -53,17 +51,8 @@
   body.addEventListener("touchend", dragEnd);
 
   const setPosition = function (left, top) {
-    console.log(left, top);
-    state.left += left * 100;
-    state.top += top * 100;
-    // const newLeft = clamp(state.left + left * 100, -30, 130);
-    // if (newLeft !== NaN) {
-    //   state.left = newLeft;
-    // }
-    // const newTop = clamp(state.top + top * 100, -30, 130);
-    // if (newTop !== NaN) {
-    //   state.top = newTop;
-    // }
+    state.left = clamp(state.left + left * 100, -30, 130);
+    state.top = clamp(state.top + top * 100, -30, 130);
   };
 
   body.addEventListener("mousemove", function (event) {
@@ -100,9 +89,5 @@
 })();
 
 function clamp(value, min, max) {
-  const clamped = Math.min(Math.max(value, min), max);
-  if (clamped === NaN) {
-    return value;
-  }
-  return clamped;
+  return Math.min(Math.max(value, min), max);
 }
