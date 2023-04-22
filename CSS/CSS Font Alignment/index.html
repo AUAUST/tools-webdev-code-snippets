@@ -32,6 +32,22 @@
         aspect-ratio: 1;
         overflow: hidden;
       }
+      main > div {
+        background-color: red;
+        height: fit-content;
+      }
+
+      rules-container {
+        display: block;
+        position: relative;
+        font-size: 10px;
+      }
+      rules-container > * {
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid currentColor;
+        bottom: 0;
+      }
     </style>
   </head>
   <body>
