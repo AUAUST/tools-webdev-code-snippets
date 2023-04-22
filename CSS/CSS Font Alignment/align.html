@@ -40,7 +40,7 @@
       p > * {
         display: inline-block;
         background-color: #f1f1f1;
-        text-decoration: underline;
+        vertical-align: text-bottom;
       }
       font-arzier {
         font-family: "IS-ArzierVF";
@@ -59,11 +59,61 @@
   <body>
     <main>
       <p>
-        <font-arzier> Lorem </font-arzier>
-        <font-lausanne> ipsum </font-lausanne>
-        <font-romie> dolor </font-romie>
-        <font-sunlight> sit </font-sunlight>
+        <font-arzier
+          data-unitperem="1000"
+          data-ascents="1000"
+          data-capheight="700"
+          data-xheight="500"
+          data-baseline="0"
+          data-descents="-200"
+          data-miny="-220"
+          data-maxy="933"
+        >
+          Lorem
+        </font-arzier>
+        <font-lausanne
+          data-unitperem="2048"
+          data-ascents="1866"
+          data-capheight="714"
+          data-xheight="517"
+          data-baseline="0"
+          data-descents="-410"
+          data-miny="-215"
+          data-maxy="1058"
+        >
+          ipsum
+        </font-lausanne>
+        <font-romie
+          data-unitperem="1000"
+          data-ascents="1050"
+          data-capheight="700"
+          data-xheight="500"
+          data-baseline="0"
+          data-descents="-290"
+          data-miny="-288"
+          data-maxy="1051"
+        >
+          dolor
+        </font-romie>
+        <font-sunlight
+          date-unitperem="2000"
+          data-ascents="1690"
+          data-capheight="1587"
+          data-xheight="1042"
+          data-baseline="0"
+          data-descents="-530"
+          data-miny="-634"
+          data-maxy="2187"
+          >sit
+        </font-sunlight>
       </p>
     </main>
+    <script>
+      const fonts = document.querySelectorAll("font-*");
+      fonts.forEach((font) => {
+        const fontFamily = font.getAttribute("font-family");
+        font.style.fontFamily = fontFamily;
+      });
+    </script>
   </body>
 </html>
