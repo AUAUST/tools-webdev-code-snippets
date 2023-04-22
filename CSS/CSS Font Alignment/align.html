@@ -41,6 +41,7 @@
         display: inline-block;
         background-color: #f1f1f1;
         vertical-align: text-bottom;
+        position: relative;
       }
       font-arzier {
         font-family: "IS-ArzierVF";
@@ -53,6 +54,11 @@
       }
       font-sunlight {
         font-family: "Sunlight Italic-VF";
+      }
+      .rule {
+        position: absolute;
+        width: 100%;
+        border: 1px solid blue;
       }
     </style>
   </head>
@@ -109,10 +115,26 @@
       </p>
     </main>
     <script>
-      const fonts = document.querySelectorAll("font-*");
-      fonts.forEach((font) => {
-        const fontFamily = font.getAttribute("font-family");
-        font.style.fontFamily = fontFamily;
+      const fontNodes = document.querySelectorAll("main > p > *");
+      fontNodes.forEach((node, index) => {
+        const ruleNodes = {
+          baseline: document.createElement("div"),
+        };
+        Object.values(ruleNodes).forEach((ruleNode) => {
+          ruleNode.classList.add("rule");
+          node.appendChild(ruleNode);
+        });
+
+        const {
+          unitperem,
+          ascents,
+          capheight,
+          xheight,
+          baseline,
+          descents,
+          miny,
+          maxy,
+        } = node.dataset;
       });
     </script>
   </body>
