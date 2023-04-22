@@ -11,15 +11,31 @@
         font-family: "IS-ArzierVF";
         src: url("./IS-ArzierVF.ttf");
       }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
       body {
         font-family: "IS-ArzierVF";
         font-size: 300px;
         line-height: 1.5;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      main {
+        background-color: lightgray;
+        width: 700px;
+        aspect-ratio: 1;
+        overflow: hidden;
       }
     </style>
   </head>
   <body>
-    <div>
+    <main>
       <letter-container>
         <span>AbpdxL</span>
       </letter-container>
@@ -60,6 +76,6 @@
           descents
         </rule-descents>
       </rules-container>
-    </div>
+    </main>
   </body>
 </html>
