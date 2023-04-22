@@ -122,6 +122,7 @@
         </font-sunlight>
       </p>
     </main>
+
     <script>
       setTimeout(() => {
         const fontNodes = document.querySelectorAll("main > p > *");
@@ -146,14 +147,20 @@
             descents,
             miny,
             maxy,
-          } = node.dataset;
+          } = (function () {
+            const data = {};
+            Object.entries(node.dataset).forEach(([key, value]) => {
+              data[key] = parseInt(value);
+            });
+            return data;
+          })();
 
           // const fullHeight = maxy - miny;
-          const fullHeight = ascents - descents;
+          const fullHeight = ((ascents + descents) / 100) * 50;
           const physicalHeight = parseInt(getComputedStyle(node).height);
 
-          ruleNodes.ascents.style.bottom = `${100}%`;
-          ruleNodes.descents.style.bottom = `${00}%`;
+          ruleNodes.ascents.style.bottom = `${fullHeight}%`;
+          ruleNodes.descents.style.bottom = `${50}%`;
         });
       }, 10);
     </script>
