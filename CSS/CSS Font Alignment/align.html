@@ -66,7 +66,7 @@
     <main>
       <div>
         <font-arzier
-          data-unitperem="1000"
+          data-unitsperem="1000"
           data-ascents="1000"
           data-capheight="700"
           data-xheight="500"
@@ -80,7 +80,7 @@
       </div>
       <div>
         <font-lausanne
-          data-unitperem="2048"
+          data-unitsperem="2048"
           data-ascents="1866"
           data-capheight="714"
           data-xheight="517"
@@ -94,7 +94,7 @@
       </div>
       <div>
         <font-romie
-          data-unitperem="1000"
+          data-unitsperem="1000"
           data-ascents="1050"
           data-capheight="700"
           data-xheight="500"
@@ -108,7 +108,7 @@
       </div>
       <div>
         <font-sunlight
-          date-unitperem="2000"
+          date-unitsperem="2000"
           data-ascents="1690"
           data-capheight="1587"
           data-xheight="1042"
@@ -133,7 +133,7 @@
             node.appendChild(ruleNode);
           });
           const {
-            unitperem,
+            unitsperem,
             ascents,
             capheight,
             xheight,
@@ -144,9 +144,13 @@
           } = node.dataset;
 
           const fullHeight = maxy - miny;
-          const physicalHeight = getComputedStyle(node).height;
+          const physicalHeight = parseInt(getComputedStyle(node).height);
 
-          console.log(physicalHeight, node);
+          ruleNodes.baseline.style.bottom = `${
+            (physicalHeight / fullHeight) * (baseline - descents)
+          }px`;
+
+          // console.log(fullHeight, physicalHeight);
         });
       }, 10);
     </script>
