@@ -34,7 +34,11 @@
         align-items: center;
         height: 100vh;
       }
-      div > * {
+      p {
+        display: inline-block;
+        vertical-align: text-bottom;
+      }
+      p > * {
         display: inline-block;
         background-color: #f1f1f1;
         vertical-align: text-bottom;
@@ -64,7 +68,7 @@
   </head>
   <body>
     <main>
-      <div>
+      <p>
         <font-arzier
           data-unitsperem="1000"
           data-ascents="1000"
@@ -77,8 +81,6 @@
         >
           Lorem
         </font-arzier>
-      </div>
-      <div>
         <font-lausanne
           data-unitsperem="2048"
           data-ascents="1866"
@@ -91,8 +93,6 @@
         >
           ipsum
         </font-lausanne>
-      </div>
-      <div>
         <font-romie
           data-unitsperem="1000"
           data-ascents="1050"
@@ -105,8 +105,6 @@
         >
           dolor
         </font-romie>
-      </div>
-      <div>
         <font-sunlight
           date-unitsperem="2000"
           data-ascents="1690"
@@ -119,14 +117,15 @@
         >
           sit
         </font-sunlight>
-      </div>
+      </p>
     </main>
     <script>
       setTimeout(() => {
-        const fontNodes = document.querySelectorAll("main > div > *");
+        const fontNodes = document.querySelectorAll("main > p > *");
         fontNodes.forEach((node, index) => {
           const ruleNodes = {
             baseline: document.createElement("div"),
+            xheight: document.createElement("div"),
           };
           Object.values(ruleNodes).forEach((ruleNode) => {
             ruleNode.classList.add("rule");
@@ -149,8 +148,9 @@
           ruleNodes.baseline.style.bottom = `${
             (physicalHeight / fullHeight) * (baseline - descents)
           }px`;
-
-          // console.log(fullHeight, physicalHeight);
+          ruleNodes.xheight.style.bottom = `${
+            (physicalHeight / fullHeight) * (xheight - descents)
+          }px`;
         });
       }, 10);
     </script>
