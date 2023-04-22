@@ -41,7 +41,7 @@
       p > * {
         display: inline-block;
         background-color: #f1f1f1;
-        vertical-align: text-bottom;
+        vertical-align: text-top;
 
         font-size: 100px;
 
@@ -62,7 +62,10 @@
       .rule {
         position: absolute;
         width: 100%;
-        border: 0.5px solid blue;
+        border-top: 0.5px solid blue;
+      }
+      .rule.ascents {
+        border-color: red;
       }
     </style>
   </head>
@@ -124,11 +127,14 @@
         const fontNodes = document.querySelectorAll("main > p > *");
         fontNodes.forEach((node, index) => {
           const ruleNodes = {
-            baseline: document.createElement("div"),
-            xheight: document.createElement("div"),
+            // baseline: document.createElement("div"),
+            // xheight: document.createElement("div"),
+            ascents: document.createElement("div"),
+            descents: document.createElement("div"),
           };
-          Object.values(ruleNodes).forEach((ruleNode) => {
+          Object.entries(ruleNodes).forEach(([name, ruleNode]) => {
             ruleNode.classList.add("rule");
+            ruleNode.classList.add(name);
             node.appendChild(ruleNode);
           });
           const {
@@ -142,15 +148,12 @@
             maxy,
           } = node.dataset;
 
-          const fullHeight = maxy - miny;
+          // const fullHeight = maxy - miny;
+          const fullHeight = ascents - descents;
           const physicalHeight = parseInt(getComputedStyle(node).height);
 
-          ruleNodes.baseline.style.bottom = `${
-            (physicalHeight / fullHeight) * (baseline - descents)
-          }px`;
-          ruleNodes.xheight.style.bottom = `${
-            (physicalHeight / fullHeight) * (xheight - descents)
-          }px`;
+          ruleNodes.ascents.style.bottom = `${100}%`;
+          ruleNodes.descents.style.bottom = `${00}%`;
         });
       }, 10);
     </script>
