@@ -401,10 +401,14 @@
 
         for (const ruleId of Object.keys(rules)) {
           const rule = rules[ruleId];
-          rule.style.bottom = `${
-            ((values[ruleId] - values.descents) / data.unitsPerEm) * 100
-          }%`;
+
+          rule.style.display = "none";
         }
+
+        rules.baseline.style.display = "block";
+        rules.baseline.style.bottom = `${
+          (values.baseline - values.descents) / data.unitsPerEm
+        }%`;
 
         console.log(container, values, data);
       }
