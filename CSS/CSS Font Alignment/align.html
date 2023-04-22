@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FONT ALIGNMENT</title>
+    <style>
+      @font-face {
+        font-family: "IS-ArzierVF";
+        src: url("./IS-ArzierVF.ttf");
+      }
+      @font-face {
+        font-family: "TWKLausanne-600";
+        src: url("./TWKLausanne-600.woff2");
+      }
+      @font-face {
+        font-family: "Romie-Regular";
+        src: url("./Romie-Regular.otf");
+      }
+      @font-face {
+        font-family: "Sunlight Italic-VF";
+        src: url("./Sunlight Italic-VF.ttf");
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      p {
+        font-size: 100px;
+      }
+      p > * {
+        display: inline-block;
+        background-color: #f1f1f1;
+        text-decoration: underline;
+      }
+      font-arzier {
+        font-family: "IS-ArzierVF";
+      }
+      font-lausanne {
+        font-family: "TWKLausanne-600";
+      }
+      font-romie {
+        font-family: "Romie-Regular";
+      }
+      font-sunlight {
+        font-family: "Sunlight Italic-VF";
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>
+        <font-arzier> Lorem </font-arzier>
+        <font-lausanne> ipsum </font-lausanne>
+        <font-romie> dolor </font-romie>
+        <font-sunlight> sit </font-sunlight>
+      </p>
+    </main>
+  </body>
+</html>
