@@ -30,6 +30,7 @@
       }
       body {
         --font-size: 200px;
+
         font-size: var(--font-size);
         line-height: 1.5;
 
@@ -62,11 +63,17 @@
         width: 100%;
         color: blue;
         border-bottom: 0.5px solid currentColor;
-        bottom: calc(
-          (var(--value) - var(--descents)) * var(--units-per-em) / 1000 *
-            var(--font-size)
-        );
+        --unit: calc(var(--font-size) / var(--units-per-em));
+        bottom: calc((var(--value) - var(--descents)) * var(--unit));
+        /* bottom: calc(var(--value) * var(--font-size) / var(--units-per-em)) -
+          var(--descents); */
+        /* bottom: calc(
+          (var(--value) - var(--descents)) *
+            (var(--font-size) / var(--units-per-em))
+        ); */
+        /* calc(var(--units-per-em) * 1000) * calc(var(--font-size) / 1000) */
       }
+
       rule-baseline {
       }
 
@@ -91,7 +98,7 @@
         data-descents="-200"
       >
         <letter-container>
-          <span>AbpdxL</span>
+          <span>fjLx</span>
         </letter-container>
         <rules-container>
           <rule-ascents
@@ -142,7 +149,7 @@
         data-descents="-200"
       >
         <letter-container>
-          <span>AbpdxL</span>
+          <span>fjLx</span>
         </letter-container>
         <rules-container>
           <rule-ascents
