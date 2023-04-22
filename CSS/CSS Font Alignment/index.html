@@ -43,13 +43,14 @@
         overflow-y: hidden;
 
         display: flex;
-        align-items: center;
+        align-items: flex-end;
 
         background-color: #f8f8f8;
       }
       main > div {
         background-color: #e4e3e3;
         height: fit-content;
+        position: relative;
       }
 
       rules-container,
@@ -60,7 +61,8 @@
 
       rules-container {
         display: block;
-        position: relative;
+        position: absolute;
+        inset: 0;
         font-size: 10px;
         pointer-events: none;
       }
@@ -310,8 +312,8 @@
           --units-per-em: 2000;
           --descents: -530;
         "
-        data-units-per-em="1000"
-        data-descents="-200"
+        data-units-per-em="2000"
+        data-descents="-530"
       >
         <letter-container>
           <span>fjLx</span>
@@ -370,5 +372,40 @@
         </rules-container>
       </div>
     </main>
+    <script>
+      const containers = document.querySelectorAll("main > div");
+      for (const container of containers) {
+        const span = container.querySelector("span");
+        const rules = {
+          ascents: container.querySelector("rule-ascents"),
+          capheight: container.querySelector("rule-capheight"),
+          xheight: container.querySelector("rule-xheight"),
+          baseline: container.querySelector("rule-baseline"),
+          descents: container.querySelector("rule-descents"),
+          miny: container.querySelector("rule-miny"),
+          maxy: container.querySelector("rule-maxy"),
+        };
+        const values = {
+          ascents: Number(rules.ascents.dataset.ascent),
+          capheight: Number(rules.capheight.dataset.capheight),
+          xheight: Number(rules.xheight.dataset.xheight),
+          baseline: Number(rules.baseline.dataset.baseline),
+          descents: Number(rules.descents.dataset.descents),
+          miny: Number(rules.miny.dataset.miny),
+          maxy: Number(rules.maxy.dataset.maxy),
+        };
+        const data = {
+          unitsPerEm: Number(container.dataset.unitsPerEm),
+          realFontHeight: span.clientHeight,
+        };
+
+        for (const ruleId of Object.keys(rules)) {
+          const rule = rules[ruleId];
+          rule.style.bottom = `${(values[ruleId] / data.unitsPerEm) * 100}%`;
+        }
+
+        console.log(container, values, data);
+      }
+    </script>
   </body>
 </html>
