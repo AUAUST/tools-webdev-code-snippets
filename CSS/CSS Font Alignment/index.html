@@ -105,8 +105,8 @@
           --units-per-em: 2048;
           --descents: -410;
         "
-        data-units-per-em="1000"
-        data-descents="-200"
+        data-units-per-em="2048"
+        data-descents="-410"
       >
         <letter-container>
           <span>fjLx</span>
@@ -172,7 +172,7 @@
           --descents: -290;
         "
         data-units-per-em="1000"
-        data-descents="-200"
+        data-descents="-290"
       >
         <letter-container>
           <span>fjLx</span>
@@ -401,7 +401,9 @@
 
         for (const ruleId of Object.keys(rules)) {
           const rule = rules[ruleId];
-          rule.style.bottom = `${(values[ruleId] / data.unitsPerEm) * 100}%`;
+          rule.style.bottom = `${
+            ((values[ruleId] - values.descents) / data.unitsPerEm) * 100
+          }%`;
         }
 
         console.log(container, values, data);
