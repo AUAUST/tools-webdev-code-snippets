@@ -34,13 +34,13 @@
         align-items: center;
         height: 100vh;
       }
-      p {
-        font-size: 100px;
-      }
-      p > * {
+      div > * {
         display: inline-block;
         background-color: #f1f1f1;
         vertical-align: text-bottom;
+
+        font-size: 100px;
+
         position: relative;
       }
       font-arzier {
@@ -58,13 +58,13 @@
       .rule {
         position: absolute;
         width: 100%;
-        border: 1px solid blue;
+        border: 0.5px solid blue;
       }
     </style>
   </head>
   <body>
     <main>
-      <p>
+      <div>
         <font-arzier
           data-unitperem="1000"
           data-ascents="1000"
@@ -77,6 +77,8 @@
         >
           Lorem
         </font-arzier>
+      </div>
+      <div>
         <font-lausanne
           data-unitperem="2048"
           data-ascents="1866"
@@ -89,6 +91,8 @@
         >
           ipsum
         </font-lausanne>
+      </div>
+      <div>
         <font-romie
           data-unitperem="1000"
           data-ascents="1050"
@@ -101,6 +105,8 @@
         >
           dolor
         </font-romie>
+      </div>
+      <div>
         <font-sunlight
           date-unitperem="2000"
           data-ascents="1690"
@@ -110,32 +116,39 @@
           data-descents="-530"
           data-miny="-634"
           data-maxy="2187"
-          >sit
+        >
+          sit
         </font-sunlight>
-      </p>
+      </div>
     </main>
     <script>
-      const fontNodes = document.querySelectorAll("main > p > *");
-      fontNodes.forEach((node, index) => {
-        const ruleNodes = {
-          baseline: document.createElement("div"),
-        };
-        Object.values(ruleNodes).forEach((ruleNode) => {
-          ruleNode.classList.add("rule");
-          node.appendChild(ruleNode);
-        });
+      setTimeout(() => {
+        const fontNodes = document.querySelectorAll("main > div > *");
+        fontNodes.forEach((node, index) => {
+          const ruleNodes = {
+            baseline: document.createElement("div"),
+          };
+          Object.values(ruleNodes).forEach((ruleNode) => {
+            ruleNode.classList.add("rule");
+            node.appendChild(ruleNode);
+          });
+          const {
+            unitperem,
+            ascents,
+            capheight,
+            xheight,
+            baseline,
+            descents,
+            miny,
+            maxy,
+          } = node.dataset;
 
-        const {
-          unitperem,
-          ascents,
-          capheight,
-          xheight,
-          baseline,
-          descents,
-          miny,
-          maxy,
-        } = node.dataset;
-      });
+          const fullHeight = maxy - miny;
+          const physicalHeight = getComputedStyle(node).height;
+
+          console.log(physicalHeight, node);
+        });
+      }, 10);
     </script>
   </body>
 </html>
