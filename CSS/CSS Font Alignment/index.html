@@ -27,10 +27,14 @@
         min-height: 100vh;
       }
       main {
-        background-color: lightgray;
-        width: 700px;
-        aspect-ratio: 1;
-        overflow: hidden;
+        width: min(100%, fit-content);
+        height: 700px;
+        overflow-y: hidden;
+
+        display: flex;
+        align-items: center;
+
+        background-color: #f8f8f8;
       }
       main > div {
         background-color: red;
@@ -45,7 +49,7 @@
       rules-container > * {
         position: absolute;
         width: 100%;
-        border-bottom: 1px solid currentColor;
+        border-bottom: 0.5px solid currentColor;
         bottom: 0;
       }
     </style>
