@@ -18,7 +18,8 @@
       }
       body {
         font-family: "IS-ArzierVF";
-        font-size: 300px;
+        --font-size: 300px;
+        font-size: var(--font-size);
         line-height: 1.5;
 
         display: flex;
@@ -48,8 +49,14 @@
       rules-container > * {
         position: absolute;
         width: 100%;
+        color: blue;
         border-bottom: 0.5px solid currentColor;
-        bottom: 0;
+        bottom: calc(
+          (var(--value) - var(--descents)) *
+            (var(--font-size) / var(--units-per-em))
+        );
+      }
+      rule-baseline {
       }
 
       letter-container {
