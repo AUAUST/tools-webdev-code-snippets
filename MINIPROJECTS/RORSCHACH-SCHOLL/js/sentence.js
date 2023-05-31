@@ -71,8 +71,8 @@ const sentences = {
 
       textContainer.innerText = sentences[currentCharacter][currentSvg] || "";
 
-      // textContainer.classList.remove("fade-in");
-      // setTimeout(() => textContainer.classList.add("fade-in"), 10);
+      textContainer.classList.remove("fade-in");
+      setTimeout(() => textContainer.classList.add("fade-in"), 10);
     });
   }
 })();
