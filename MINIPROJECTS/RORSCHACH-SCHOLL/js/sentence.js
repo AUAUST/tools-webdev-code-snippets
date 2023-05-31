@@ -58,12 +58,14 @@ const sentences = {
       this.classList.add("current");
 
       // Returns the currently used SVG (<svg><use xlink:href="{this ID here}"></use></svg>)
-      let currentSvg = document
+      const currentSvg = document
         .getElementById("shape-main")
         .querySelector("use").attributes["xlink:href"].value;
+      const currentCharacter = document.querySelector(
+        "[data-character].current"
+      ).dataset.character;
 
-      textContainer.innerText =
-        sentences[this.dataset.character][currentSvg] || "";
+      textContainer.innerText = sentences[currentCharacter][currentSvg] || "";
 
       // textContainer.classList.remove("fade-in");
       // setTimeout(() => textContainer.classList.add("fade-in"), 10);
