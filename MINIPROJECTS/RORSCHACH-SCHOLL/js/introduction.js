@@ -28,13 +28,13 @@
   window.addEventListener("wheel", (e) => {
     if (state.animating) return;
 
-    state.scrollPosition += e.deltaY;
+    state.scrollPosition = Math.max(0, state.scrollPosition + e.deltaY);
 
     const newSlide = Math.floor(state.scrollPosition / state.scrollAmount);
-    console.log(state.scrollPosition, newSlide);
 
     if (newSlide >= slides.length) {
       state.finished = true;
+      introduction.classList.add("finished");
     } else if (newSlide !== state.currentSlide) {
       // Prevent scrolling past multiple slides
       state.animating = true;
