@@ -10,6 +10,10 @@
   src: url("../fonts/ES-Build-Medium.ttf") format("truetype");
 }
 
+:root {
+  --red: #ff0000;
+}
+
 body {
   --color: #000000;
   --size: 20;
@@ -107,7 +111,7 @@ menu li .icon svg:hover {
 }
 
 menu li .character {
-  background-color: red;
+  background-color: var(--red);
   text-align: center;
 }
 
@@ -189,7 +193,7 @@ p {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: rgb(255, 0, 0);
+  color: var(--red);
   transition: 1s ease-in-out;
   pointer-events: none;
   font-size: 34px;
@@ -202,6 +206,22 @@ p {
 
 .fade-in {
   animation: fadein 3s forwards;
+}
+
+#introduction {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-color: white;
+}
+#introduction .slide {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  background-color: white;
+  color: var(--red);
 }
 
 @keyframes fadein {
