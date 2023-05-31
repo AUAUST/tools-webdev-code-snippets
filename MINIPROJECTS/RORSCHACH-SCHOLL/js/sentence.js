@@ -57,14 +57,13 @@ const sentences = {
 
       this.classList.add("current");
 
-      console.log(this.dataset.character);
-      console.log(
-        document.getElementById("shape-main").querySelector("use").attributes[
-          "xlink:href"
-        ].value
-      );
+      // Returns the currently used SVG (<svg><use xlink:href="{this ID here}"></use></svg>)
+      let currentSvg = document
+        .getElementById("shape-main")
+        .querySelector("use").attributes["xlink:href"].value;
 
-      // textContainer.innerText = sentences[this.dataset.character] || "";
+      textContainer.innerText =
+        sentences[this.dataset.character][currentSvg] || "";
 
       // textContainer.classList.remove("fade-in");
       // setTimeout(() => textContainer.classList.add("fade-in"), 10);
