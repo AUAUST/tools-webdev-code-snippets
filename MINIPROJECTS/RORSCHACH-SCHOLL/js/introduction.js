@@ -25,10 +25,10 @@
     finished: false,
   };
 
-  window.addEventListener("wheel", (e) => {
+  function updateState(relativePosition) {
     if (state.animating) return;
 
-    state.scrollPosition = Math.max(0, state.scrollPosition + e.deltaY);
+    state.scrollPosition = Math.max(0, state.scrollPosition + relativePosition);
 
     const newSlide = Math.floor(state.scrollPosition / state.scrollAmount);
 
@@ -51,7 +51,15 @@
       // Update state
       state.currentSlide = newSlide;
     }
-  });
+  }
+
+  introduction.addEventListener("wheel", (e) => updateState(e.deltaY));
+  introduction.addEventListener("touchmove", (e) =>
+    updateState(e.touches[0].clientY)
+  );
+  introduction.addEventListener("click", (e) =>
+    updateState(state.scrollAmount)
+  );
 
   slides[0].classList.add("current");
 })();
