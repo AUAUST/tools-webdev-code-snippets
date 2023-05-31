@@ -47,35 +47,6 @@ const phrases3 = {
 
 let currentPhrases = phrases1; // On commence avec le premier set de phrases.
 
-(function () {
-  const buttons = document.querySelectorAll("[data-icon]");
-
-  const views = [
-    document.getElementById("shape-main").querySelector("svg use"),
-    document.getElementById("shape-mirror").querySelector("svg use"),
-  ];
-
-  const textContainer = document.getElementById("text-container");
-
-  for (const button of buttons) {
-    button.addEventListener("click", function () {
-      for (const button of buttons) {
-        button.classList.remove("current");
-      }
-      this.classList.add("current");
-
-      for (const view of views) {
-        view.setAttribute("xlink:href", `#${this.dataset.icon}`);
-      }
-
-      textContainer.innerText = currentPhrases[this.dataset.icon] || "";
-
-      textContainer.classList.remove("fade-in");
-      setTimeout(() => textContainer.classList.add("fade-in"), 10);
-    });
-  }
-})();
-
 // Gestion des boutons de changement de set de phrases.
 document.getElementById("set1").addEventListener("click", function () {
   currentPhrases = phrases1;
