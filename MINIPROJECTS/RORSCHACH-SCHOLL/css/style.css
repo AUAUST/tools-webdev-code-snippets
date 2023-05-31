@@ -222,6 +222,11 @@ p {
   text-align: center;
   background-color: white;
   color: var(--red);
+  opacity: 0;
+  transition: 1s ease-in-out;
+}
+#introduction .slide.current {
+  opacity: 1;
 }
 
 @keyframes fadein {
