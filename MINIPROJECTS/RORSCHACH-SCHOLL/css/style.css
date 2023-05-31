@@ -61,24 +61,27 @@ main .view svg {
 }
 
 menu {
-  display: flex;
   position: relative;
-  padding-top: 15px;
 }
-
-menu li {
-  width: 100%;
+menu .row {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  height: 15px;
 }
-
-menu li .color {
+menu .row.tall {
+  height: 60px;
+}
+menu .row li,
+menu .row div {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+menu .color {
   height: 15px;
   background-color: var(--color);
 }
 
-menu li .icon {
+menu .icon {
   height: 60px;
 }
 
@@ -118,10 +121,6 @@ menu li .character:hover {
 }
 
 #resize {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  height: 15px;
   cursor: ew-resize;
   background-image: linear-gradient(
     to right,
