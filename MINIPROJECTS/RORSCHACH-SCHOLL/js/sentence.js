@@ -51,11 +51,15 @@ const sentences = {
 
   for (const button of buttons) {
     button.addEventListener("click", function () {
-      for (const button of buttons) {
-        button.classList.remove("current");
-      }
+      if (this.classList.contains("character")) {
+        for (const button of buttons) {
+          if (button.classList.contains("character")) {
+            button.classList.remove("current");
+          }
+        }
 
-      this.classList.add("current");
+        this.classList.add("current");
+      }
 
       // Returns the currently used SVG (<svg><use xlink:href="{this ID here}"></use></svg>)
       const currentSvg = document
