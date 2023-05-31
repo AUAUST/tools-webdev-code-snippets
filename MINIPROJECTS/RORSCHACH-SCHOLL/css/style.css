@@ -213,6 +213,7 @@ p {
   inset: 0;
   z-index: 1;
   background-color: white;
+  color: var(--red);
 }
 #introduction .slide {
   position: absolute;
@@ -221,11 +222,22 @@ p {
   transform: translateY(-50%);
   text-align: center;
   background-color: white;
-  color: var(--red);
   opacity: 0;
   transition: 1s ease-in-out;
 }
 #introduction .slide.current {
+  opacity: 1;
+}
+#scroll-me {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  text-align: center;
+  font-size: 0.6em;
+  opacity: 0;
+  transition: 1s ease-in-out;
+}
+#scroll-me.current {
   opacity: 1;
 }
 
