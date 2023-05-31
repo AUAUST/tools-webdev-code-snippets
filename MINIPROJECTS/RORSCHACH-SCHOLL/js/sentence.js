@@ -46,7 +46,7 @@ const sentences = {
 };
 
 (function () {
-  const buttons = document.querySelectorAll("[data-character]");
+  const buttons = document.querySelectorAll("[data-character], [data-icon]");
   const textContainer = document.getElementById("text-container");
 
   for (const button of buttons) {
