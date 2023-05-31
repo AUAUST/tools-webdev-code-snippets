@@ -58,8 +58,13 @@ const sentences = {
       this.classList.add("current");
 
       console.log(this.dataset.character);
+      console.log(
+        document.getElementById("shape-main").querySelector("use").attributes[
+          "xlink:href"
+        ].value
+      );
 
-      // textContainer.innerText = currentPhrases[this.dataset.icon] || "";
+      // textContainer.innerText = sentences[this.dataset.character] || "";
 
       // textContainer.classList.remove("fade-in");
       // setTimeout(() => textContainer.classList.add("fade-in"), 10);
