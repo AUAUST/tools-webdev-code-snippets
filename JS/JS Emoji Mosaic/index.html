@@ -14,7 +14,7 @@
       #canvas {
         position: absolute;
       }
-      /* #emojis, */
+      #emojis,
       #input {
         position: absolute;
         top: 0;
@@ -27,12 +27,7 @@
   </head>
   <body>
     <canvas id="canvas"></canvas>
-    <canvas
-      id="emojis"
-      width="60"
-      height="60"
-      style="background-color: red"
-    ></canvas>
+    <canvas id="emojis" width="60" height="60"></canvas>
     <input type="file" id="input" accept="image/*" />
     <script>
       const canvas = document.getElementById("canvas");
@@ -281,7 +276,7 @@
           return;
         }
 
-        emojiColors[code] = [avRed, avGreen, avBlue];
+        emojiColors[code] = [avRed, avGreen, avBlue, unicodeChar];
       }
 
       // Loop through all emoji ranges
@@ -292,7 +287,58 @@
         }
       }
 
-      console.log(emojiColors);
+      function findClosestEmoji(color, emojiColors) {
+        let closestEmoji = null;
+        let closestDistance = Infinity;
+
+        emojiColors.forEach((emojiData) => {
+          const [r, g, b, emoji] = emojiData;
+
+          // Calculate the Euclidean distance between colors.
+          const distance = Math.sqrt(
+            (color[0] - r) ** 2 + (color[1] - g) ** 2 + (color[2] - b) ** 2
+          );
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestEmoji = emojiData;
+          }
+        });
+
+        return closestEmoji;
+      }
+
+      // console.log(findClosestEmoji([100, 255, 128], emojiColors));
+
+      // Repeat 100 times to pseudocode:
+      // generate random color
+      // set background of canvas as random color
+      // fill canvas with closest emoji to random color
+      // wait 1 second
+      // repeat
+      const randomColor = () => [
+        Math.floor(Math.random() * 256),
+        Math.floor(Math.random() * 256),
+        Math.floor(Math.random() * 256),
+      ];
+
+      const drawEmoji = (emoji, x, y) => {
+        context.font = `50px "Apple Color Emoji"`;
+        context.textBaseline = "middle";
+        context.textAlign = "center";
+        context.fillText(emoji, x, y);
+      };
+
+      const drawRandomEmoji = () => {
+        const color = randomColor();
+        context.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        const emoji = findClosestEmoji(color, emojiColors);
+        drawEmoji(emoji[3], canvas.width / 2, canvas.height / 2);
+      };
+
+      const drawRandomEmojiInterval = setInterval(drawRandomEmoji, 1000);
     </script>
   </body>
 </html>
