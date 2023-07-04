@@ -14,6 +14,7 @@
       #canvas {
         position: absolute;
       }
+      /* #emojis, */
       #input {
         position: absolute;
         top: 0;
@@ -26,10 +27,18 @@
   </head>
   <body>
     <canvas id="canvas"></canvas>
+    <canvas
+      id="emojis"
+      width="60"
+      height="60"
+      style="background-color: red"
+    ></canvas>
     <input type="file" id="input" accept="image/*" />
     <script>
       const canvas = document.getElementById("canvas");
       const context = canvas.getContext("2d");
+      const emojis = document.getElementById("emojis");
+      const emojisContext = emojis.getContext("2d");
       const input = document.getElementById("input");
 
       window.addEventListener("click", () => input.click());
@@ -226,8 +235,64 @@
         [0xe0077, 0xe0078],
         (0xe007f, 0xe0080),
       ];
+      const emojiColors = [];
 
-      console.log(emojiUnicodeRanges);
+      /**
+       * @param {number} code
+       * @param {HTMLCanvasElement} canvas
+       * @returns {boolean}
+       */
+      function getEmojiColor(code, canvas) {
+        const context = canvas.getContext("2d");
+
+        // Write emoji to canvas
+        const unicodeChar = String.fromCharCode(code);
+        context.font = `50px "Apple Color Emoji"`;
+        context.textBaseline = "middle";
+        context.textAlign = "center";
+        context.fillText(unicodeChar, canvas.width / 2, canvas.height / 2);
+
+        const data = context.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        ).data;
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        let red = (green = blue = total = 0);
+
+        for (let i = 0; i < data.length; i += 4) {
+          const alpha = data[i + 3] / 255;
+
+          red += data[i] * alpha;
+          green += data[i + 1] * alpha;
+          blue += data[i + 1] * alpha;
+          total += alpha;
+        }
+
+        const avRed = Math.round(red / total);
+        const avGreen = Math.round(green / total);
+        const avBlue = Math.round(blue / total);
+
+        // Ignore black emojis (which are actually transparent/invalid glyphs)
+        if (isNaN(avRed) || (avRed === 0 && avGreen === 0 && avBlue === 0)) {
+          return;
+        }
+
+        emojiColors[code] = [avRed, avGreen, avBlue];
+      }
+
+      // Loop through all emoji ranges
+      for (let i = 0; i < emojiUnicodeRanges.length; i++) {
+        const range = emojiUnicodeRanges[i];
+        for (let j = range[0]; j < range[1]; j++) {
+          getEmojiColor(j, emojis);
+        }
+      }
+
+      console.log(emojiColors);
     </script>
   </body>
 </html>
