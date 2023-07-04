@@ -4,9 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emoji Mosaic</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        /* overflow: hidden; */
+      }
+      #canvas {
+        position: absolute;
+      }
+    </style>
   </head>
   <body>
-    <canvas></canvas>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    </script>
     <script></script>
   </body>
 </html>
