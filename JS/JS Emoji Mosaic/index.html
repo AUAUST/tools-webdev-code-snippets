@@ -14,21 +14,48 @@
       #canvas {
         position: absolute;
       }
+      #input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        visibility: hidden;
+      }
     </style>
   </head>
   <body>
     <canvas id="canvas"></canvas>
+    <input type="file" id="input" accept="image/*" />
     <script>
       const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+      const input = document.getElementById("input");
+
+      window.addEventListener("click", () => input.click());
 
       window.addEventListener("resize", resizeCanvas);
       resizeCanvas();
+
+      input.addEventListener("change", (event) =>
+        handleImage(event.target.files[0])
+      );
 
       function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
+
+      function handleImage(file) {
+        const image = new Image();
+
+        image.onload = function () {
+          context.drawImage(image, 0, 0);
+          URL.revokeObjectURL(img.src);
+        };
+
+        image.src = URL.createObjectURL(file);
+      }
     </script>
-    <script></script>
   </body>
 </html>
